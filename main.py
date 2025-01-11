@@ -4,13 +4,11 @@ import pyttsx3
 from datetime import datetime
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QFileDialog, QLabel
 
-
 def text_to_speech(text):
     """Конвертує текст у голосове повідомлення."""
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
-
 
 def speech_to_text():
     """Конвертує голосовий ввід у текст та записує в файл."""
@@ -34,13 +32,11 @@ def speech_to_text():
         except sr.WaitTimeoutError:
             return "Час очікування на початок голосу минув."
 
-
 def choose_file_for_speech():
     """Вибір текстового файлу для озвучення."""
     options = QFileDialog.Options()
     file_path, _ = QFileDialog.getOpenFileName(None, "Виберіть текстовий файл", "", "Text files (*.txt);;All files (*)", options=options)
     return file_path
-
 
 class SpeechApp(QWidget):
     def __init__(self):
@@ -94,7 +90,6 @@ class SpeechApp(QWidget):
                     self.result_text.setPlainText(f"Помилка при читанні файлу: {e}")
             else:
                 self.result_text.setPlainText("Файл не був вибраний.")
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
